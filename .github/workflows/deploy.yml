@@ -5,14 +5,10 @@ on:
 #     branches:
 #       - main
   workflow_dispatch:
-    inputs:
-      name-repo:
-        description: 'Nombre del repositorio'
-        required: true
-        default: 'deploy-faceubb'
+
 jobs:
   deploy:
-    environment: producion
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Instalar dependencias (OpenVPN, SSH y sshpass)
@@ -48,7 +44,7 @@ jobs:
           PROD_USER: ${{ secrets.PROD_USER }}
           PROD_PASSWORD: ${{ secrets.PROD_PASSWORD }}
           PROD_PORT: ${{ secrets.PROD_PORT }}
-          REMOTE_REPO_NAME: ${{ github.event.inputs.name-repo || 'Proyecto' }}
+          REMOTE_REPO_NAME: ${{ secrets.NOMBRE_REPOSITORIO || 'Proyecto' }}
         run: |
           APP_DIR_REMOTE="/home/$PROD_HOST/$REMOTE_REPO_NAME"
           ENV_FILE_BACKEND_REMOTE="$APP_DIR_REMOTE/backend/src/config/.env"
@@ -75,7 +71,7 @@ jobs:
       - name: Ejecutar despliegue (script remoto)
         env:
           PASS_GIT_COMMIT_SHA: ${{ github.sha }}
-          REMOTE_REPO_NAME: ${{ github.event.inputs.name-repo || 'Proyecto_GPS' }}
+          REMOTE_REPO_NAME: ${{ secrets.NOMBRE_REPOSITORIO || 'Proyecto' }}
         run: |
           export GH_ARG_GIT_COMMIT_SHA="${{ env.PASS_GIT_COMMIT_SHA }}"
 
