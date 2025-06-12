@@ -46,7 +46,7 @@ jobs:
           PROD_PORT: ${{ secrets.PROD_PORT }}
           REMOTE_REPO_NAME: ${{ secrets.NOMBRE_REPOSITORIO || 'Proyecto' }}
         run: |
-          APP_DIR_REMOTE="/home/$PROD_HOST/$REMOTE_REPO_NAME"
+          APP_DIR_REMOTE="/home/$PROD_USER/$REMOTE_REPO_NAME"
           ENV_FILE_BACKEND_REMOTE="$APP_DIR_REMOTE/backend/src/config/.env"
           ENV_FILE_FRONTEND_REMOTE="$APP_DIR_REMOTE/frontend/.env"
 
