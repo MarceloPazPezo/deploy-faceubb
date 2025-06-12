@@ -101,7 +101,7 @@ jobs:
                 exit 1
             fi
 
-            APP_DIR="/home/$PROD_HOST/$REMOTE_REPO_NAME"
+            APP_DIR="/home/$PROD_USER/$REMOTE_REPO_NAME"
             
             # 1. Actualizar código
             cd "$APP_DIR"
