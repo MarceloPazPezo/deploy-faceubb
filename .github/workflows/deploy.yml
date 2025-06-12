@@ -82,6 +82,7 @@ jobs:
           ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} \
           bash -s -- \
           "$GH_ARG_GIT_COMMIT_SHA" \
+          "$REMOTE_REPO_NAME"
           << 'EOF'
             set -euo pipefail
 
