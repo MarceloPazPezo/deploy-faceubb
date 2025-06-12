@@ -74,7 +74,7 @@ jobs:
           REMOTE_REPO_NAME: ${{ secrets.NOMBRE_REPOSITORIO || 'Proyecto' }}
         run: |
           export GH_ARG_GIT_COMMIT_SHA="${{ env.PASS_GIT_COMMIT_SHA }}"
-
+          export REMOTE_REPO_NAME="${{ env.REMOTE_REPO_NAME }}"
           sshpass -p "${{ secrets.PROD_PASSWORD }}" ssh \
           -q \
           -o StrictHostKeyChecking=no \
